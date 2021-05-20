@@ -1,0 +1,110 @@
+
+
+1.create four separate functions to do addition, subtraction, multiplication, division of two inputs
+
+create or replace FUNCTION adding(var_1 NUMBER ,var_2 NUMBER)
+    RETURN NUMBER                    
+  AS                                    
+    varr NUMBER;
+  BEGIN                               
+    varr := var_1 + var_2;
+    RETURN varr;         
+END;
+SELECT adding(10,20) FROM DUAL;
+
+create or replace FUNCTION subtract(var_1 NUMBER ,var_2 NUMBER)
+    RETURN NUMBER                    
+  AS                                    
+    varr NUMBER;
+  BEGIN                               
+    varr := var_1 - var_2;
+    RETURN varr;         
+END;
+SELECT subtract(10,20) FROM DUAL;
+
+create or replace FUNCTION mul(var_1 NUMBER ,var_2 NUMBER)
+    RETURN NUMBER                    
+  AS                                    
+    varr NUMBER;
+  BEGIN                               
+    varr := var_1 * var_2;
+    RETURN varr;         
+END;
+SELECT mul(10,20) FROM DUAL;
+
+create or replace FUNCTION div(var_1 NUMBER ,var_2 NUMBER)
+    RETURN NUMBER                    
+  AS                                    
+    varr NUMBER;
+  BEGIN                               
+    varr := var_1 / var_2;
+    RETURN varr;         
+END;
+SELECT div(10,20) FROM DUAL;
+2.create a package called as arithmetic by including the above 4 functions
+
+
+CREATE OR REPLACE PACKAGE arith as
+FUNCTION addition (var_1 NUMBER,var_2 NUMBER)RETURN NUMBER ;
+function subtraction(var_1 NUMBER,var_2 NUMBER) return number;
+function multiplication(var_1 NUMBER,var_2 NUMBER) return number;
+function division(var_1 NUMBER,var_2 NUMBER) return number;
+end;
+/
+
+CREATE OR REPLACE PACKAGE body arith as
+    --addition
+    FUNCTION addition (var_1 NUMBER,var_2 NUMBER)
+    RETURN NUMBER                    
+    AS                                    
+    val NUMBER;
+    BEGIN                               
+        val := var_1 + var_2;
+        RETURN val;         
+    END;
+    --subtraction
+    FUNCTION subtraction (var_1 NUMBER,var_2 NUMBER)
+    RETURN NUMBER                    
+    AS                                    
+    val NUMBER;
+    BEGIN                               
+        val := var_1 - var_2;
+        RETURN val;         
+    END;
+    --multiplication
+    FUNCTION multiplication (var_1 NUMBER,var_2 NUMBER)
+    RETURN NUMBER                    
+    AS                                    
+        val NUMBER;
+    BEGIN                               
+        val := var_1 * var_2;
+        RETURN val;         
+    END;
+    --division
+    FUNCTION division (var_1 NUMBER,var_2 NUMBER)
+    RETURN NUMBER                    
+    AS                                    
+    val NUMBER;
+     BEGIN                               
+    val := var_1 / var_2;
+    RETURN val;         
+    END;
+
+END;
+
+3.call the function in select statement and in anonymous bloc
+
+SELECT arith.addition(20,10) FROM DUAL;
+SELECT arith.subtraction(100,10) FROM DUAL;
+SELECT arith.multiplication(20,10) FROM DUAL;
+SELECT arith.division(10,20) FROM DUAL;
+
+
+
+
+
+
+
+
+
+
